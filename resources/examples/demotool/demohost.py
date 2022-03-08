@@ -4,7 +4,7 @@ class DemoHost():
     def startup(self):
         print("DemoHost starting up")
 
-    def CMD_newProject(tokens):
+    def CMD_newProject(self, tokens):
         print("*** Create new project ***")
 
     def eventLoop(self):
@@ -16,6 +16,6 @@ class DemoHost():
                 continue
             cmd = DemoHost.cmdPrefix + tokens[0]
             if hasattr(self, cmd) and callable(func := getattr(self, cmd)):
-                func()
+                func(tokens)
             else:
-                print("Unknown command {}".format(cmd))
+                print("Unknown command {}".format(tokens[0]))
