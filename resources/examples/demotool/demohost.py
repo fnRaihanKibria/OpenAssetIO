@@ -1,11 +1,28 @@
 class DemoHost():
     cmdPrefix = "CMD_"
 
+    def __init__(self) -> None:
+        self.manager = None
+
     def startup(self):
         print("DemoHost starting up")
 
+    def setManager(self, manager):
+        self.manager = manager
+        print("DemoHost set manager")
+
     def CMD_newProject(self, tokens):
+        """initialize host with a new project"""
         print("*** Create new project ***")
+
+    def CMD_saveProject(self, tokens):
+        """save current project"""
+        print("*** Saving current project ***")
+        # TODO talk to manager to register this asset
+
+    def CMD_info(self, tokens):
+        """show information about the current manager"""
+        print("Current manager: {} ({})".format(self.manager.displayName(), self.manager.identifier()))
 
     def eventLoop(self):
         while(True):

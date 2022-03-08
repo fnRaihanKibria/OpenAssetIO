@@ -1,7 +1,12 @@
 from openassetio import constants
 from openassetio.managerAPI import ManagerInterface
 
-class DemoManagerInterface(ManagerInterface):
+class DemoManager(ManagerInterface):
+    #TODO store setting if this manager supports kWillManagePath
+
+    def startup(self):
+        print("DemoManager starting up")
+
     @staticmethod
     def identifier():
         return "org.openassetio.examples.demomanager"
