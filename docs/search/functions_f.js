@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['term',['term',['../classopenassetio_1_1host_a_p_i_1_1terminology_1_1_mapper.html#a03d7130b38ec2e168ec20b8ac831e83e',1,'openassetio::hostAPI::terminology::Mapper']]],
-  ['thawmanagerstate',['thawManagerState',['../classopenassetio_1_1host_a_p_i_1_1transactions_1_1_transaction_coordinator.html#a6611b27206b2b75bfb7ba5854c5708ae',1,'openassetio::hostAPI::transactions::TransactionCoordinator']]],
-  ['thawstate',['thawState',['../classopenassetio_1_1manager_a_p_i_1_1_manager_interface_1_1_manager_interface.html#a1e0cfcd6931793d50252248e670e4707',1,'openassetio::managerAPI::ManagerInterface::ManagerInterface']]],
-  ['type',['type',['../classopenassetio_1_1_specification_1_1_specification.html#aff464267544e4efc9b770c8320c8f199',1,'openassetio::Specification::Specification']]]
+  ['uidelegate',['uiDelegate',['../classopenassetio_1_1plugin_system_1_1_manager_plugin_1_1_manager_plugin.html#ab276e2a61b4452ffe6e9a54cac10f1ce',1,'openassetio::pluginSystem::ManagerPlugin::ManagerPlugin']]],
+  ['upcast',['upcast',['../classopenassetio_1_1_specification_factory_1_1_specification_factory.html#a4d42b5c535aa90c614f23d282ee02123',1,'openassetio::SpecificationFactory::SpecificationFactory']]],
+  ['updateterminology',['updateTerminology',['../classopenassetio_1_1host_a_p_i_1_1_manager_1_1_manager.html#a021e2cb20906f304cb8bd6dd288782b8',1,'openassetio.hostAPI.Manager.Manager.updateTerminology()'],['../classopenassetio_1_1manager_a_p_i_1_1_manager_interface_1_1_manager_interface.html#ad23a64984e32921a6eaacc5e1c960910',1,'openassetio.managerAPI.ManagerInterface.ManagerInterface.updateTerminology()']]],
+  ['upstreamlogger',['upstreamLogger',['../classopenassetio_1_1log_1_1_severity_filter.html#a0b828cc45291e3f21cc27a0d1a56c0ee',1,'openassetio::log::SeverityFilter']]],
+  ['usemanager',['useManager',['../classopenassetio_1_1host_a_p_i_1_1_session_1_1_session.html#a7becbf9ac0660d5aae6976ab13730849',1,'openassetio::hostAPI::Session::Session']]]
 ];

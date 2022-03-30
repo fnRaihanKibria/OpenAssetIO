@@ -10,9 +10,10 @@ var searchData=
   ['interface',['interface',['../classopenassetio_1_1plugin_system_1_1_manager_plugin_1_1_manager_plugin.html#aafd0b3ea85ff007407525aa377d03bac',1,'openassetio::pluginSystem::ManagerPlugin::ManagerPlugin']]],
   ['interval',['interval',['../classopenassetio_1_1__core_1_1debug_1_1___timer.html#ac0e8b5630adc65e2991ffcbe9897819f',1,'openassetio::_core::debug::_Timer']]],
   ['invalidentityreference',['InvalidEntityReference',['../classopenassetio_1_1exceptions_1_1_invalid_entity_reference.html',1,'openassetio::exceptions']]],
-  ['isentityreference',['isEntityReference',['../classopenassetio_1_1host_a_p_i_1_1_manager_1_1_manager.html#a9ce05436797dd24b433e15c3ded492ea',1,'openassetio.hostAPI.Manager.Manager.isEntityReference()'],['../classopenassetio_1_1manager_a_p_i_1_1_manager_interface_1_1_manager_interface.html#af105eb1db7d52f126848417428742120',1,'openassetio.managerAPI.ManagerInterface.ManagerInterface.isEntityReference()']]],
+  ['isentityreference',['isEntityReference',['../classopenassetio_1_1host_a_p_i_1_1_manager_1_1_manager.html#ab4346bb060396f0285495d46eb3aec5e',1,'openassetio.hostAPI.Manager.Manager.isEntityReference()'],['../classopenassetio_1_1manager_a_p_i_1_1_manager_interface_1_1_manager_interface.html#a4a434983789e0b6bc77c596010a2830e',1,'openassetio.managerAPI.ManagerInterface.ManagerInterface.isEntityReference()']]],
   ['isformultiple',['isForMultiple',['../classopenassetio_1_1_context_1_1_context.html#afc1254282688e92d76fe86a24931330b',1,'openassetio::Context::Context']]],
   ['isforread',['isForRead',['../classopenassetio_1_1_context_1_1_context.html#a906563e05341ad827dda75b6b3e40b05',1,'openassetio::Context::Context']]],
   ['isforwrite',['isForWrite',['../classopenassetio_1_1_context_1_1_context.html#a789a0c08ae06bdfc27669e50cf7b9022',1,'openassetio::Context::Context']]],
-  ['isoftype',['isOfType',['../classopenassetio_1_1_specification_1_1_specification.html#aea9e79cdae89157211bccc4033ee7185',1,'openassetio::Specification::Specification']]]
+  ['isoftype',['isOfType',['../classopenassetio_1_1_specification_1_1_specification.html#aea9e79cdae89157211bccc4033ee7185',1,'openassetio::Specification::Specification']]],
+  ['issuccessful',['isSuccessful',['../namespaceopenassetio_1_1test_1_1manager_1_1____main____.html#a3d275eae44512b72b40f0f4926ec1f61',1,'openassetio::test::manager::__main__']]]
 ];
