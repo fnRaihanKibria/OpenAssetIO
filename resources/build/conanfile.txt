@@ -6,6 +6,7 @@ pybind11/2.8.1
 # Unit tests
 # TODO(DF): Make this conditional (likely requires conanfile.py)
 catch2/2.13.8
+trompeloeil/42
 
 [generators]
 # Generate a CMake toolchain preamble file `conan_paths.cmake`, which

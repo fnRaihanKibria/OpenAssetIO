@@ -6,6 +6,7 @@ target_link_libraries(
     openassetio-core-c-test
     PRIVATE
     Catch2::Catch2
+    trompeloeil::trompeloeil
     openassetio-core-c
 )
 

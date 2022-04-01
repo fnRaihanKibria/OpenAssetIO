@@ -1,4 +1,5 @@
 find_package(Catch2 2 REQUIRED)
+find_package(trompeloeil 42 REQUIRED)
 
 include(Catch)
 
