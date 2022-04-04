@@ -20,7 +20,9 @@ CManagerInterface::CManagerInterface(
     : handle_{handle}, suite_{suite} {}
 
 // Destructor calls suite's `dtor` function.
-CManagerInterface::~CManagerInterface() { suite_.dtor(handle_); }
+CManagerInterface::~CManagerInterface() {
+  suite_.dtor(handle_);
+}
 
 Str CManagerInterface::identifier() const {
   // Buffer for error message.
