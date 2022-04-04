@@ -116,8 +116,75 @@ SCENARIO("CManagerInterface::identifier") {
           .RETURN(expectedErrorCode);
 
       WHEN("the manager's identifier is queried") {
-        THEN("an exception is thrown with appropriate error message") {
+        THEN("an exception is thrown with expected error message") {
           REQUIRE_THROWS_MATCHES(cManagerInterface.identifier(), std::runtime_error,
+                                 Catch::Message(expectedErrorCodeAndMsg));
+        }
+      }
+    }
+  }
+}
+
+SCENARIO("CManagerInterface::displayName") {
+  GIVEN("A CManagerInterface wrapping an opaque handle and function suite") {
+    MockCAPI capi;
+
+    auto *handle = reinterpret_cast<OPENASSETIO_NS(managerAPI_ManagerInterface_h)>(&capi);
+    auto const suite = getSuite();
+
+    // Expect the destructor to be called, i.e. when cManagerInterface
+    // goes out of scope.
+    REQUIRE_CALL(capi, dtor(handle));
+
+    openassetio::managerAPI::CManagerInterface cManagerInterface{handle, suite};
+
+    AND_GIVEN("the C suite's displayName() call succeeds") {
+      const std::string_view expectedDisplayName = "My Display Name";
+
+      using trompeloeil::_;
+
+      // Check that `displayName` is called properly and update
+      // out-parameter.
+      REQUIRE_CALL(capi, displayName(_, _, handle))
+          // Ensure max size is reasonable.
+          .LR_WITH(_2->maxSize == kStringBufferSize)
+          // Update SimpleString out-parameter.
+          .LR_SIDE_EFFECT(
+              strncpy(_2->buffer, expectedDisplayName.data(), expectedDisplayName.size()))
+          .LR_SIDE_EFFECT(_2->usedSize = expectedDisplayName.size())
+          // Return OK code.
+          .RETURN(OPENASSETIO_NS(kOK));
+
+      WHEN("the manager's displayName is queried") {
+        const openassetio::Str actualDisplayName = cManagerInterface.displayName();
+
+        THEN("the returned displayName matches expected displayName") {
+          CHECK(actualDisplayName == expectedDisplayName);
+        }
+      }
+    }
+
+    AND_GIVEN("the C suite's displayName() call fails") {
+      const std::string_view expectedErrorMsg = "some error happened";
+      const int expectedErrorCode = 123;
+      const openassetio::Str expectedErrorCodeAndMsg = "123: some error happened";
+
+      using trompeloeil::_;
+
+      // Check that `displayName` is called properly and update error
+      // message out-parameter.
+      REQUIRE_CALL(capi, displayName(_, _, handle))
+          // Ensure max size is reasonable.
+          .LR_WITH(_1->maxSize == kStringBufferSize)
+          // Update SimpleString error message out-parameter.
+          .LR_SIDE_EFFECT(strncpy(_1->buffer, expectedErrorMsg.data(), expectedErrorMsg.size()))
+          .LR_SIDE_EFFECT(_1->usedSize = expectedErrorMsg.size())
+          // Return OK code.
+          .RETURN(expectedErrorCode);
+
+      WHEN("the manager's displayName is queried") {
+        THEN("an exception is thrown with expected error message") {
+          REQUIRE_THROWS_MATCHES(cManagerInterface.displayName(), std::runtime_error,
                                  Catch::Message(expectedErrorCodeAndMsg));
         }
       }
