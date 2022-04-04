@@ -17,7 +17,7 @@ install(
 target_sources(openassetio-core-c-test-exe
     PRIVATE
     main.cpp
-    managerAPI/CManagerInterfaceTest.cpp)
+    private/managerAPI/CManagerInterfaceTest.cpp)
 
 target_link_libraries(
     openassetio-core-c-test-exe
