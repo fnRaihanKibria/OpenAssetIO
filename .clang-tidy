@@ -54,6 +54,8 @@ CheckOptions:
     - { key: readability-identifier-naming.TemplateParameterCase,  value: CamelCase  }
     - { key: readability-identifier-naming.FunctionCase,           value: camelBack  }
     - { key: readability-identifier-naming.VariableCase,           value: camelBack  }
+    # Allow _1, _2, etc as variable (placeholder) names - used for trompeloeil mock config.
+    - { key: readability-identifier-naming.VariableIgnoredRegexp,  value: "^_\d+$"   }
     - { key: readability-identifier-naming.ClassMemberCase,        value: camelBack  }
     - { key: readability-identifier-naming.PrivateMemberSuffix,    value: _          }
     - { key: readability-identifier-naming.ProtectedMemberSuffix,  value: _          }
