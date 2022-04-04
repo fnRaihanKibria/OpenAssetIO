@@ -8,6 +8,9 @@
 
 #include <managerAPI/CManagerInterface.hpp>
 
+// Duplicated from CManagerInterface.
+constexpr size_t kStringBufferSize = 500;
+
 struct MockCAPI {
   MAKE_MOCK1(dtor, void(OPENASSETIO_NS(managerAPI_ManagerInterface_h)));
 
@@ -73,10 +76,11 @@ SCENARIO("CManagerInterface::identifier") {
 
       using trompeloeil::_;
 
-      // Check that `identifier` is called properly and update out-parameter.
+      // Check that `identifier` is called properly and update
+      // out-parameter.
       REQUIRE_CALL(capi, identifier(_, _, handle))
           // Ensure max size is reasonable.
-          .LR_WITH(_2->maxSize >= 500)
+          .LR_WITH(_2->maxSize == kStringBufferSize)
           // Update SimpleString out-parameter.
           .LR_SIDE_EFFECT(
               strncpy(_2->buffer, expectedIdentifier.data(), expectedIdentifier.size()))
@@ -84,11 +88,37 @@ SCENARIO("CManagerInterface::identifier") {
           // Return OK code.
           .RETURN(OPENASSETIO_NS(kOK));
 
-      WHEN("The manager's identifier is queried") {
+      WHEN("the manager's identifier is queried") {
         const openassetio::Str actualIdentifier = cManagerInterface.identifier();
 
-        THEN("Returned identifier matches expected identifier") {
+        THEN("the returned identifier matches expected identifier") {
           CHECK(actualIdentifier == expectedIdentifier);
+        }
+      }
+    }
+
+    AND_GIVEN("the C suite's identifier() call fails") {
+      const std::string_view expectedErrorMsg = "some error happened";
+      const int expectedErrorCode = 123;
+      const openassetio::Str expectedErrorCodeAndMsg = "123: some error happened";
+
+      using trompeloeil::_;
+
+      // Check that `identifier` is called properly and update error
+      // message out-parameter.
+      REQUIRE_CALL(capi, identifier(_, _, handle))
+          // Ensure max size is reasonable.
+          .LR_WITH(_1->maxSize == kStringBufferSize)
+          // Update SimpleString error message out-parameter.
+          .LR_SIDE_EFFECT(strncpy(_1->buffer, expectedErrorMsg.data(), expectedErrorMsg.size()))
+          .LR_SIDE_EFFECT(_1->usedSize = expectedErrorMsg.size())
+          // Return OK code.
+          .RETURN(expectedErrorCode);
+
+      WHEN("the manager's identifier is queried") {
+        THEN("an exception is thrown with appropriate error message") {
+          REQUIRE_THROWS_MATCHES(cManagerInterface.identifier(), std::runtime_error,
+                                 Catch::Message(expectedErrorCodeAndMsg));
         }
       }
     }
