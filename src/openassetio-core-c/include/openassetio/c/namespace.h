@@ -5,12 +5,23 @@
 #include <openassetio/export.h>  // For OPENASSETIO_VERSION
 
 /**
- * Prefix `openassetio_vX_Y_` to a given symbol name, where X_Y is the
- * API version.
+ * @addtogroup CAPI C API
+ * @{
+ */
+
+/**
+ * Prefix `openassetio_vX_Y_` to a given symbol name, where `X_Y` is
+ * the current API version.
+ *
+ * @hideinitializer
  */
 #define OPENASSETIO_NS(symbol) OPENASSETIO_NS_WITH_VER(OPENASSETIO_VERSION, symbol)
 
-/// @private Utility to work around token pasting macro expansion rules.
+/**
+ * @}
+ */
+
+// Utility to work around token pasting macro expansion rules.
 #define OPENASSETIO_NS_WITH_VER(ver, symbol) OPENASSETIO_NS_WITH_VER_IMPL(ver, symbol)
-/// @private Utility to work around token pasting macro expansion rules.
+// Utility to work around token pasting macro expansion rules.
 #define OPENASSETIO_NS_WITH_VER_IMPL(ver, symbol) openassetio_##ver##_##symbol

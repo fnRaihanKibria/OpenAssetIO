@@ -14,15 +14,12 @@ namespace managerAPI {
 constexpr size_t kStringBufferSize = 500;
 
 // Constructor expects to be supplied a valid handle and suite.
-CManagerInterface::CManagerInterface(
-    OPENASSETIO_NS(managerAPI_ManagerInterface_h) handle,
-    OPENASSETIO_NS(managerAPI_ManagerInterface_s) suite)
+CManagerInterface::CManagerInterface(OPENASSETIO_NS(managerAPI_ManagerInterface_h) handle,
+                                     OPENASSETIO_NS(managerAPI_ManagerInterface_s) suite)
     : handle_{handle}, suite_{suite} {}
 
 // Destructor calls suite's `dtor` function.
-CManagerInterface::~CManagerInterface() {
-  suite_.dtor(handle_);
-}
+CManagerInterface::~CManagerInterface() { suite_.dtor(handle_); }
 
 Str CManagerInterface::identifier() const {
   // Buffer for error message.
@@ -53,8 +50,7 @@ Str CManagerInterface::displayName() const {
   char outBuffer[kStringBufferSize];
   OPENASSETIO_NS(SimpleString) out{kStringBufferSize, outBuffer, 0};
 
-  const int errorCode =
-      suite_.displayName(&errorMessage, &out, handle_);
+  const int errorCode = suite_.displayName(&errorMessage, &out, handle_);
 
   throwIfError(errorCode, errorMessage);
 

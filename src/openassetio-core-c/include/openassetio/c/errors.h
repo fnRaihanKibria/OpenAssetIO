@@ -7,9 +7,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+/**
+ * @addtogroup CAPI C API
+ * @{
+ */
 
+/// Error code indicating an OK result from a C API function.
 const int OPENASSETIO_NS(kOK) = 0;
 
+/**
+ * @}
+ */
 #ifdef __cplusplus
 }
 #endif
