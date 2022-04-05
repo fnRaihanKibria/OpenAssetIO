@@ -4,7 +4,7 @@
 
 #include <openassetio/c/SimpleString.h>
 #include <openassetio/c/errors.h>
-#include <openassetio/c/ns.h>
+#include <openassetio/c/namespace.h>
 
 #include <errors.hpp>
 

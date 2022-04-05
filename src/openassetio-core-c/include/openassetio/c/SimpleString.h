@@ -4,7 +4,7 @@
 
 #include <cstddef>
 
-#include "./ns.h"
+#include "./namespace.h"
 
 #ifdef __cplusplus
 extern "C" {

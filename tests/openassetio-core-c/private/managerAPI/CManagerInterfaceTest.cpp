@@ -4,7 +4,7 @@
 #include <catch2/trompeloeil.hpp>
 
 #include <openassetio/c/errors.h>
-#include <openassetio/c/ns.h>
+#include <openassetio/c/namespace.h>
 
 #include <managerAPI/CManagerInterface.hpp>
 
