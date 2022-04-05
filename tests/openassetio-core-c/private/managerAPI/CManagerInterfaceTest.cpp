@@ -56,6 +56,10 @@ SCENARIO("CManagerInterface destructor") {
   }
 }
 
+// TODO(DF): Test scenario structure - rather than a big scenario per
+//  method, each covering multiple cases, perhaps better to split and
+//  put common code in a fixture instead, somehow?
+
 SCENARIO("CManagerInterface::identifier") {
   GIVEN("A CManagerInterface wrapping an opaque handle and function suite") {
     MockCAPI capi;
