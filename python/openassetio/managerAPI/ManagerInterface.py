@@ -27,7 +27,7 @@ A single-class module, providing the ManagerInterface class.
 # pylint: disable=unused-argument,no-self-use
 
 import abc
-# TODO(DF): Remove pylint disable once CI is fixed.
+# TODO(DF): @pylint Remove pylint disable once CI is fixed.
 from openassetio import _openassetio  # pylint: disable=no-name-in-module
 from .. import exceptions
 
