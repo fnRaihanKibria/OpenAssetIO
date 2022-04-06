@@ -8,6 +8,12 @@
 
 namespace openassetio {
 inline namespace OPENASSETIO_VERSION {
+/// Boolean value type for dictionaries.
+using Bool = bool;
+/// Integer value type for dictionaries.
+using Int = int64_t;
+/// Real value type for dictionaries.
+using Float = double;
 /// String type used throughout OpenAssetIO.
 using Str = std::string;
 }  // namespace OPENASSETIO_VERSION

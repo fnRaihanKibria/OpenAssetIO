@@ -72,7 +72,7 @@ void registerBlobTrait(const py::module& mod) {
       .def(
           "getUrl",
           [](const BlobTrait& self, const bool raiseOnError) {
-            property::Str out;
+            openassetio::Str out;
             trait::TraitPropertyStatus status = self.getUrl(&out);
             return maybeProperty(raiseOnError, status, std::move(out));
           },
@@ -81,7 +81,7 @@ void registerBlobTrait(const py::module& mod) {
       .def(
           "getMimeType",
           [](const BlobTrait& self, const bool raiseOnError) {
-            property::Str out;
+            openassetio::Str out;
             trait::TraitPropertyStatus status = self.getMimeType(&out);
             return maybeProperty(raiseOnError, status, std::move(out));
           },
