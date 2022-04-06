@@ -5,10 +5,10 @@
 #include <openassetio/c/SimpleString.h>
 #include <openassetio/c/errors.h>
 #include <openassetio/c/namespace.h>
-
+// private headers
 #include <errors.hpp>
 
-SCENARIO("throwIfError doesn't throw on OK error code") {
+SCENARIO("throwIfError error code/message handling") {
   GIVEN("an OK error code") {
     const int code = OPENASSETIO_NS(kOK);
 
@@ -18,9 +18,7 @@ SCENARIO("throwIfError doesn't throw on OK error code") {
       }
     }
   }
-}
 
-SCENARIO("throwIfError throws if not OK error code") {
   GIVEN("an error code and message") {
     const int code = 123;
     openassetio::Str message = "some error";

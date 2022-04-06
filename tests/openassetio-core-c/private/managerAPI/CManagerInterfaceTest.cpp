@@ -5,12 +5,16 @@
 
 #include <openassetio/c/errors.h>
 #include <openassetio/c/namespace.h>
-
+// private headers
 #include <managerAPI/CManagerInterface.hpp>
 
 // Duplicated from CManagerInterface.
 constexpr size_t kStringBufferSize = 500;
 
+/**
+ * Mock manager API implementation that the function pointer suite (see
+ * `getSuite`) will delegate to.
+ */
 struct MockCAPI {
   MAKE_MOCK1(dtor, void(OPENASSETIO_NS(managerAPI_ManagerInterface_h)));
 
@@ -21,6 +25,10 @@ struct MockCAPI {
                               OPENASSETIO_NS(managerAPI_ManagerInterface_h)));
 };
 
+/**
+ * Get a ManagerInterface C API function pointer suite that assumes the
+ * provided `handle` is a `MockCAPI` instance.
+ */
 OPENASSETIO_NS(managerAPI_ManagerInterface_s) getSuite() {
   return {// dtor
           [](OPENASSETIO_NS(managerAPI_ManagerInterface_h) h) {
@@ -41,7 +49,7 @@ OPENASSETIO_NS(managerAPI_ManagerInterface_s) getSuite() {
           }};
 }
 
-SCENARIO("CManagerInterface destructor") {
+SCENARIO("A CManagerInterface is destroyed") {
   GIVEN("An opaque handle and function suite") {
     MockCAPI capi;
 
@@ -56,11 +64,7 @@ SCENARIO("CManagerInterface destructor") {
   }
 }
 
-// TODO(DF): Test scenario structure - rather than a big scenario per
-//  method, each covering multiple cases, perhaps better to split and
-//  put common code in a fixture instead, somehow?
-
-SCENARIO("CManagerInterface::identifier") {
+SCENARIO("A host calls CManagerInterface::identifier") {
   GIVEN("A CManagerInterface wrapping an opaque handle and function suite") {
     MockCAPI capi;
 
@@ -69,8 +73,8 @@ SCENARIO("CManagerInterface::identifier") {
 
     // Expect the destructor to be called, i.e. when cManagerInterface
     // goes out of scope.
-    // TODO(DF): Mysteriously, this must come _before_ the construction
-    //  of cManagerInterface...
+    // Mysteriously, this must come _before_ the construction
+    // of cManagerInterface...
     REQUIRE_CALL(capi, dtor(handle));
 
     openassetio::managerAPI::CManagerInterface cManagerInterface{handle, suite};
@@ -129,7 +133,7 @@ SCENARIO("CManagerInterface::identifier") {
   }
 }
 
-SCENARIO("CManagerInterface::displayName") {
+SCENARIO("A host calls CManagerInterface::displayName") {
   GIVEN("A CManagerInterface wrapping an opaque handle and function suite") {
     MockCAPI capi;
 
