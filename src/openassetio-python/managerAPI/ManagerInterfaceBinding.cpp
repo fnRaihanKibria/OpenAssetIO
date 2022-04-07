@@ -24,6 +24,10 @@ struct PyManagerInterface : ManagerInterface {
   [[nodiscard]] Str displayName() const override {
     PYBIND11_OVERRIDE_PURE(Str, ManagerInterface, displayName, /* no args */);
   }
+
+  [[nodiscard]] SimpleMap info() const override {
+    PYBIND11_OVERRIDE_PURE(SimpleMap, ManagerInterface, info, /* no args */);
+  }
 };
 
 }  // namespace managerAPI
@@ -38,5 +42,6 @@ void registerManagerInterface(const py::module& mod) {
                                                                              "ManagerInterface")
       .def(py::init())
       .def("identifier", &ManagerInterface::identifier)
-      .def("displayName", &ManagerInterface::displayName);
+      .def("displayName", &ManagerInterface::displayName)
+      .def("info", &ManagerInterface::info);
 }

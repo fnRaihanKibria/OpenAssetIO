@@ -40,6 +40,7 @@ target_sources(
     openassetio-core-c
     PRIVATE
     private/managerAPI/CManagerInterface.cpp
+    private/SimpleMap.cpp
 )
 
 # Public header dependency.

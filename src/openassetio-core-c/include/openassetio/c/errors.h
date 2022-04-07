@@ -14,6 +14,13 @@ extern "C" {
 
 /// Error code indicating an OK result from a C API function.
 const int OPENASSETIO_NS(kOK) = 0;
+const int OPENASSETIO_NS(kUnknown) = 1;
+const int OPENASSETIO_NS(kTypeMismatch) = 2;
+const int OPENASSETIO_NS(kOutOfRange) = 3;
+const int OPENASSETIO_NS(kLength) = 4;
+const int OPENASSETIO_NS(kInternal) = 5;
+
+// TODO some sort of constant for minimum size of error output strings?
 
 /**
  * @}

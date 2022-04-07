@@ -3,6 +3,7 @@
 #pragma once
 
 #include "../SimpleString.h"
+#include "../SimpleMap.h"
 #include "../namespace.h"
 
 #ifdef __cplusplus
@@ -96,6 +97,13 @@ typedef struct {
    */
   int (*displayName)(OPENASSETIO_NS(SimpleString) * err, OPENASSETIO_NS(SimpleString) * out,
                      OPENASSETIO_NS(managerAPI_ManagerInterface_h) handle);
+
+
+
+
+  int (*info)(OPENASSETIO_NS(SimpleString) * err, OPENASSETIO_NS(SimpleMap_h) * out,
+    OPENASSETIO_NS(managerAPI_ManagerInterface_h) handle);
+
 } OPENASSETIO_NS(managerAPI_ManagerInterface_s);
 
 /**

@@ -5,6 +5,7 @@
 
 #include <openassetio/export.h>
 #include <openassetio/typedefs.hpp>
+#include <openassetio/SimpleMap.hpp>
 
 namespace openassetio {
 inline namespace OPENASSETIO_VERSION {
@@ -193,6 +194,13 @@ class OPENASSETIO_CORE_EXPORT ManagerInterface {
    * @return Manager's display name.
    */
   [[nodiscard]] virtual Str displayName() const = 0;
+
+   /**
+    * Returns other information that may be useful about this asset management system.
+    * 
+    * @return Map
+    */
+  [[nodiscard]] virtual openassetio::SimpleMap info() const = 0;
 
   /**
    * @}

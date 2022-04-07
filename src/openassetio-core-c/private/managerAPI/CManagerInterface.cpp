@@ -56,6 +56,20 @@ Str CManagerInterface::displayName() const {
 
   return {out.buffer, out.usedSize};
 }
+
+SimpleMap CManagerInterface::info() const {
+  SimpleMap result;
+
+  const int errorCode = 1;
+  char errorMessageBuffer[] = "NOT IMPLEMENTED YET";
+  OPENASSETIO_NS(SimpleString)
+  errorMessage{sizeof(errorMessageBuffer), errorMessageBuffer, 0};
+
+  throwIfError(errorCode, errorMessage);
+
+  return result;
+}
+
 }  // namespace managerAPI
 }  // namespace OPENASSETIO_VERSION
 }  // namespace openassetio

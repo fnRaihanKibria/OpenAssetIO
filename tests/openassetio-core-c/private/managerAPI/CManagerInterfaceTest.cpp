@@ -25,28 +25,30 @@ struct MockCAPI {
                               OPENASSETIO_NS(managerAPI_ManagerInterface_h)));
 };
 
-/**
- * Get a ManagerInterface C API function pointer suite that assumes the
- * provided `handle` is a `MockCAPI` instance.
- */
-OPENASSETIO_NS(managerAPI_ManagerInterface_s) getSuite() {
-  return {// dtor
-          [](OPENASSETIO_NS(managerAPI_ManagerInterface_h) h) {
-            auto *api = reinterpret_cast<MockCAPI *>(h);
-            api->dtor(h);
-          },
-          // identifier
-          [](OPENASSETIO_NS(SimpleString) * err, OPENASSETIO_NS(SimpleString) * out,
-             OPENASSETIO_NS(managerAPI_ManagerInterface_h) h) {
-            auto *api = reinterpret_cast<MockCAPI *>(h);
-            return api->identifier(err, out, h);
-          },
-          // displayName
-          [](OPENASSETIO_NS(SimpleString) * err, OPENASSETIO_NS(SimpleString) * out,
-             OPENASSETIO_NS(managerAPI_ManagerInterface_h) h) {
-            auto *api = reinterpret_cast<MockCAPI *>(h);
-            return api->displayName(err, out, h);
-          }};
+namespace {
+  /**
+   * Get a ManagerInterface C API function pointer suite that assumes the
+   * provided `handle` is a `MockCAPI` instance.
+   */
+  OPENASSETIO_NS(managerAPI_ManagerInterface_s) getSuite() {
+    return {// dtor
+            [](OPENASSETIO_NS(managerAPI_ManagerInterface_h) h) {
+              auto *api = reinterpret_cast<MockCAPI *>(h);
+              api->dtor(h);
+            },
+            // identifier
+            [](OPENASSETIO_NS(SimpleString) * err, OPENASSETIO_NS(SimpleString) * out,
+              OPENASSETIO_NS(managerAPI_ManagerInterface_h) h) {
+              auto *api = reinterpret_cast<MockCAPI *>(h);
+              return api->identifier(err, out, h);
+            },
+            // displayName
+            [](OPENASSETIO_NS(SimpleString) * err, OPENASSETIO_NS(SimpleString) * out,
+              OPENASSETIO_NS(managerAPI_ManagerInterface_h) h) {
+              auto *api = reinterpret_cast<MockCAPI *>(h);
+              return api->displayName(err, out, h);
+            }};
+  }
 }
 
 SCENARIO("A CManagerInterface is destroyed") {
@@ -196,6 +198,45 @@ SCENARIO("A host calls CManagerInterface::displayName") {
                                  Catch::Message(expectedErrorCodeAndMsg));
         }
       }
+    }
+  }
+}
+
+SCENARIO("A host calls CManagerInterface::info") {
+  GIVEN("A CManagerInterface wrapping an opaque handle and function suite") {
+    MockCAPI capi;
+
+    auto *handle = reinterpret_cast<OPENASSETIO_NS(managerAPI_ManagerInterface_h)>(&capi);
+    auto const suite = getSuite();
+
+    // Expect the destructor to be called, i.e. when cManagerInterface
+    // goes out of scope.
+    REQUIRE_CALL(capi, dtor(handle));
+
+    openassetio::managerAPI::CManagerInterface cManagerInterface{handle, suite};
+
+    AND_GIVEN("the C suite's info() call succeeds") {
+      using trompeloeil::_;
+
+      // Check that `info` is called properly and update
+      // out-parameter.
+      // REQUIRE_CALL(capi, info(_, _, handle))
+      //     // Ensure max size is reasonable.
+      //     .LR_WITH(_2->maxSize == kStringBufferSize)
+      //     // Update SimpleString out-parameter.
+      //     .LR_SIDE_EFFECT(
+      //         strncpy(_2->buffer, expectedDisplayName.data(), expectedDisplayName.size()))
+      //     .LR_SIDE_EFFECT(_2->usedSize = expectedDisplayName.size())
+      //     // Return OK code.
+      //     .RETURN(OPENASSETIO_NS(kOK));
+
+      // WHEN("the manager's info is queried") {
+      //   const openassetio::SimpleMap actualInfo = cManagerInterface.info();
+
+      //   THEN("the returned info matches expected info") {
+      //     CHECK(actualInfo == expectedInfo);
+      //   }
+      // }
     }
   }
 }
